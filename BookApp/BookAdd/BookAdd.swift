@@ -13,9 +13,13 @@ struct BookAdd: View {
                 Text("No books found.")
             } else {
                 List(vm.books) { book in
-                    VStack(alignment: .leading) {
-                        Text(book.title)
-                        Text(book.author_name.first ?? "").font(.footnote)
+                    Button {
+                        vm.loadCover(book)
+                    } label: {
+                        VStack(alignment: .leading) {
+                            Text(book.title)
+                            Text(book.author_name.first ?? "").font(.footnote)
+                        }
                     }
                 }
             }
