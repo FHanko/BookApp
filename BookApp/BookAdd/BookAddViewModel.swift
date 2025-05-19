@@ -34,7 +34,7 @@ final class BookAddViewModel: ObservableObject {
             do {
                 books[index].coverLoading = true
                 let cover = try await OpenLibraryApi.loadCover(book)
-                books[index].cover = cover
+                books.apply { $0.key == book.key } update: { $0.cover = cover }
             } catch let error as OpenLibraryApi.ApiError {
                 switch error {
                 case .isbnError(let message), .urlError(let message):

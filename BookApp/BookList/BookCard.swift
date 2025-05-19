@@ -3,14 +3,14 @@ import Foundation
 
 struct BookCard:View {
     let coverWidth = 70.0
-    var cardHeight: Double { coverWidth * sqrt(2.0) }
+    var coverHeight: Double { coverWidth * sqrt(2.0) }
     var book: Book
     var onToggle: () -> Void
 
     var body: some View {
         HStack {
             Rectangle()
-                .frame(width: coverWidth, height: cardHeight)
+                .frame(width: coverWidth, height: coverHeight)
             VStack(alignment: .leading) {
                 Text(book.title)
                     .font(.headline)
@@ -22,7 +22,7 @@ struct BookCard:View {
             Spacer()
             ReadStateToggle(book: book, onToggle: onToggle)
         }
-        .frame(maxHeight: cardHeight)
+        .frame(maxHeight: coverHeight)
     }
 }
 

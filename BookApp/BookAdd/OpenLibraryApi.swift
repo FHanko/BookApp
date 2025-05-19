@@ -64,4 +64,7 @@ struct ApiBook: Decodable, Identifiable {
     var coverLoading: Bool? = false
     
     var id: String { key }
+    var model: Book {
+        Book(title: title, author: author_name[0], isbn: isbn[0])
+    }
 }
