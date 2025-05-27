@@ -3,12 +3,13 @@ import SwiftData
 
 @Model
 class Book: Identifiable {
-    init(id: Int = 0, title: String = "", author: String = "", isbn: String = "", readState: ReadState = .Unread) {
+    init(id: Int = 0, title: String = "", author: String = "", isbn: String = "", readState: ReadState = .Unread, cover: Data? = nil) {
         self.id = id
         self.title = title
         self.author = author
         self.isbn = isbn
         self.readState = readState
+        self.cover = cover
     }
     
     @Attribute(.unique) var id: Int
@@ -16,6 +17,7 @@ class Book: Identifiable {
     var author: String
     var isbn: String
     var readState: ReadState
+    var cover: Data?
 
     func toggleReadState() {
         readState = readState.info.next

@@ -9,8 +9,16 @@ struct BookCard:View {
 
     var body: some View {
         HStack {
-            Rectangle()
-                .frame(width: coverWidth, height: coverHeight)
+            if let cover = book.cover {
+                Image(uiImage: UIImage(data: cover)!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: coverWidth, height: coverHeight, alignment: .topTrailing)
+            } else {
+                Rectangle()
+                    .frame(width: coverWidth, height: coverHeight)
+            }
+            
             VStack(alignment: .leading) {
                 Text(book.title)
                     .font(.headline)

@@ -5,6 +5,7 @@ struct BookList: View {
     @Query(sort: [SortDescriptor(\Book.id)]) var books: [Book]
     @State var showAddScreen = false
     @StateObject var vm: BookListViewModel = BookListViewModel()
+    @Environment(\.modelContext) private var context
 
     var body: some View {
         NavigationStack {
@@ -13,7 +14,9 @@ struct BookList: View {
                     BookCard(
                         book: book,
                         onToggle: { vm.send(.ToggleReadState(book)) }
-                    )
+                    ).onLongPressGesture {
+                        context.delete(book)
+                    }
                 }
                 
                 Button {

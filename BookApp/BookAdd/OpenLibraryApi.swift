@@ -65,6 +65,6 @@ struct ApiBook: Decodable, Identifiable {
     
     var id: String { key }
     var model: Book {
-        Book(title: title, author: author_name[0], isbn: isbn[0])
+        Book(title: title, author: author_name[0], isbn: isbn[0], cover: cover)
     }
 }
